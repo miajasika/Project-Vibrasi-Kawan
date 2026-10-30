@@ -29,6 +29,11 @@ class RegisterController extends Controller {
             'email' => $validated['email'],
             'no_hp' => $validated['no_hp'],
             'password' => Hash::make($validated['password']),
+            'role' => 'klien',
+        ]);
+
+        Klien::create([
+            'user_id' => $user->id,
         ]);
 
         return redirect('/login')->with('Success', 'Registrasi berhasil! Silahkan login');
