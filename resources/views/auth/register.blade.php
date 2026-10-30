@@ -1,15 +1,11 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registrasi</title>
-</head>
-<body>
+@extends('layouts.auth')
 
+@section('title', 'Registrasi')
+
+@section('content')
     <h2>Form Registrasi</h2>
 
-    <form action="/register" method="POST">
+    <form action="/registrasi" method="POST">
         @csrf
 
         <!-- Nama Lengkap -->
@@ -18,6 +14,7 @@
             <input type="text" id="name" name="name" value="{{ old('name') }}">
             @error('name')
                 <div style="color: red;">{{ $message }}</div>
+
             @enderror
         </div>
         <br>
@@ -27,34 +24,26 @@
             <label for="email">Email:</label><br>
             <input type="email" id="email" name="email" value="{{ old('email') }}">
             @error('email')
-                <div style="color: red;">{{ $message }}</div>
+                <div style="color: red;">{{ $message}}</div>
+
             @enderror
         </div>
         <br>
 
-        <!-- Nomor HP -->
+        <!-- Nomor Hp -->
         <div>
-            <label for="no_hp">Nomor HP/WhatsApp:</label><br>
+            <label for = "no_hp">Nomor HP/WhatsApp:</label><br>
             <input type="text" id="no_hp" name="no_hp" value="{{ old('no_hp') }}">
-            @error('no_hp')
-                <div style="color: red;">{{ $message }}</div>
-            @enderror
-        </div>
-        <br>
-
-        <!-- Password -->
-        <div>
-            <label for="password">Kata Sandi:</label><br>
-            <input type="password" id="password" name="password">
             @error('password')
-                <div style="color: red;">{{ $message }}</div>
+                <div style="color: red;">{{ $message}}</div>
+
             @enderror
         </div>
         <br>
 
         <!-- Konfirmasi Password -->
         <div>
-            <label for="password_confirmation">Konfirmasi Kata Sandi:</label><br>
+            <label for="password confirmation">Konfirmasi Kata Sandi:</label><br>
             <input type="password" id="password_confirmation" name="password_confirmation">
         </div>
         <br>
@@ -62,5 +51,5 @@
         <button type="submit">Daftar</button>
     </form>
 
-</body>
-</html>
+    <p>Sudah punya akun? <a href="/Login">Login di sini</a></p>
+@endsection
