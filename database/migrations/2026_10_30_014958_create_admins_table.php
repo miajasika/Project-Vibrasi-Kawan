@@ -12,8 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('admins', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            $table->id('admin_id');
+            $table->unsignedBigInteger('user_id')->unique();
+            $table->foreign('user_id', 'fk_admin_user')
+            ->references('user_id')->on('users')
+            ->cascadeOnDelete()->cascadeOnUpdate();
         });
     }
 
@@ -22,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('admins');
+        Schema::dropIfExists('admin');
     }
 };

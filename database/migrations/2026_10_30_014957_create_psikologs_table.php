@@ -12,8 +12,15 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('psikologs', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            $table->id('psikolog_id');
+            $table->unsignedBigInteger('user_id')->unique();
+            $table->string('no_sipp', 50);
+            $table->string('spesialisasi');
+            $table->text('deskripsi')->nullable();
+            $table->string('foto')->nullable();
+            $table->foreign('user_id', 'fk_psikolog_user')
+            ->references('user_id')->on('users')
+            ->cascadeOnDelete()->cascadeOnUpdate();
         });
     }
 
@@ -22,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('psikologs');
+        Schema::dropIfExists('psikolog');
     }
 };

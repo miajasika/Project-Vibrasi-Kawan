@@ -11,9 +11,18 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('jadwal_praktiks', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+        Schema::create('jadwal_praktik', function (Blueprint $table) {
+            $table->id('jadwal_id');
+            $table->unsignedBigInteger('psikolog_id');
+            $table->date('tanggal');
+            $table->time('jam_mulai');
+            $table->time('jam_selesai');
+            $table->enum('status', ['tersedia', 'terbooking'])->default('tersedia');
+            $table->timestamps('created_at')->nullable()->useCurrent();
+            $table->timestamp('updated_at')->nullable()->useCurrent()->useCurrentOnUpdate();
+            $table->foreign('psikolog_id', 'fk_jadwal_psikolog')
+            ->references('psikolog_id')->on('psikolog')
+            ->restrictOnDelete()->cascadeOnUpdate();
         });
     }
 
@@ -22,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('jadwal_praktiks');
+        Schema::dropIfExists('jadwal_praktik');
     }
 };
