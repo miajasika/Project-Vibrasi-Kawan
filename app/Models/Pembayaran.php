@@ -23,6 +23,6 @@ class Pembayaran extends Model{
         return $this->belongsTo(Booking::class,'booking_id', 'booking_id');
     }
     public function admin(){
-        return $this->belongsTo(Admin::class, 'diverfikasi_oleh', 'admin_id');
+        return $this->belongsTo(Admin::class, 'diverifikasi_oleh', 'admin_id');
     }
 }

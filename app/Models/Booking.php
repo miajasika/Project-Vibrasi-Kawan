@@ -29,7 +29,7 @@ class Booking extends Model {
     }
 
     function jadwalPraktik(){
-        return $this->belongsTo(JadwalPraktik::class, 'jadwal_id', 'jadwa;_id');
+        return $this->belongsTo(JadwalPraktik::class, 'jadwal_id', 'jadwal_id');
     }
 
     function pembayaran(){

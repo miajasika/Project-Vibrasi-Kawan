@@ -18,10 +18,12 @@ class Psikolog extends Model
         'foto',
     ];
 
-    function user(){
+    public $timestamps = false;
+
+    public function user(){
         return $this->belongsTo(User::class, 'user_id', 'user_id');
     }
-    function jadwalPraktik(){
+    public function jadwalPraktik(){
         return $this->hasMany(JadwalPraktik::class, 'psikolog_id', 'psikolog_id');
     }
 
