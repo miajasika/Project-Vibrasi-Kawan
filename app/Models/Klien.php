@@ -13,6 +13,8 @@ class Klien extends Model
     protected $primaryKey = 'klien_id';
     protected $fillable = ['user_id',];
 
+    public $timestamps = false;
+
     public function user() {
         return $this->belongsTo(User::class, 'user_id', 'user_id');
     }

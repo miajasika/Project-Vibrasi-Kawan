@@ -23,6 +23,6 @@ class RekamKlinis extends Model{
         return $this->belongsTo(Booking::class, 'booking_id','booking_id');
     }
     function kategoriMasalah(){
-        return $this->belongsToMany(kategoriMasalah::class, 'rekam_klinis_kategori', 'rekam_klinis_id', 'kategori_id');
+        return $this->belongsToMany(KategoriMasalah::class, 'rekam_klinis_kategori', 'rekam_klinis_id', 'kategori_id');
     }
 }
