@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 
 class JadwalPraktik extends Model
 {
@@ -24,6 +25,18 @@ class JadwalPraktik extends Model
     }
     public function booking(){
         return $this->hasMany(Booking::class, 'jadwal_id', 'jadwal_id');
+    }
+
+    public function scopeTersedia(Builder $query)
+    {
+        return $query->where('status', 'tersedia')
+            ->where(function ($query){
+                $query->where('tanggal', '>', today())
+                    ->orWhere(function ($query){
+                        $query->where('tanggal', today())
+                            ->where('jam_mulai', '>', now()->format('H:i:s'));
+                });
+        });
     }
 
 }
