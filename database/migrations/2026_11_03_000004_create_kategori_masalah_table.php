@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id('kategori_id');
             $table->string('nama');
             $table->boolean('is_aktif')->default(true);
-            $table->timestamps('created_at')->nullable()->useCurrent();
+            $table->timestamp('created_at')->nullable()->useCurrent();
             $table->timestamp('updated_at')->nullable()->useCurrent()->useCurrentOnUpdate();
         });
     }
