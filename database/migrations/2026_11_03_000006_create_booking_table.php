@@ -26,7 +26,7 @@ return new class extends Migration
             $table->timestamp('updated_at')->nullable()->useCurrent()->useCurrentOnUpdate();
             $table->unique('jadwal_id', 'uq_booking_jadwal');
             $table->foreign('klien_id', 'fk_booking_klien')
-                ->references('klien_id')->on('kliens')
+                ->references('klien_id')->on('klien')
                 ->restrictOnDelete()->cascadeOnUpdate();
             $table->foreign('jadwal_id', 'fk_booking_jadwal_praktik')
                 ->references('jadwal_id')->on('jadwal_praktik')
