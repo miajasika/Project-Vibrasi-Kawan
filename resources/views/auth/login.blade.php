@@ -31,6 +31,6 @@
         <button type="submit">Login</button>
     </form>
 
-    <p>Belum punya akun? <a href="/registrasi">Daftar di sini </a></p>
+    <p>Belum punya akun? <a href="/register">Daftar di sini </a></p>
 @endsection
 
