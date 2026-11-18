@@ -19,6 +19,7 @@ class JadwalPraktik extends Model
         'jam_selesai',
         'status',
     ];
+    protected $casts = ['tanggal' => 'date'];
 
     public function psikolog(){
         return $this->belongsTo(Psikolog::class, 'psikolog_id','psikolog_id');
