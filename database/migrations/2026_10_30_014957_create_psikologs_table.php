@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('psikologs', function (Blueprint $table) {
+        Schema::create('psikolog', function (Blueprint $table) {
             $table->id('psikolog_id');
             $table->unsignedBigInteger('user_id')->unique();
             $table->string('no_sipp', 50);

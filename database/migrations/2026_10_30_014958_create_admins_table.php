@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('admins', function (Blueprint $table) {
+        Schema::create('admin', function (Blueprint $table) {
             $table->id('admin_id');
             $table->unsignedBigInteger('user_id')->unique();
             $table->foreign('user_id', 'fk_admin_user')
