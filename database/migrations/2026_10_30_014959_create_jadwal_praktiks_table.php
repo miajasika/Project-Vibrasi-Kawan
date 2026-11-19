@@ -21,7 +21,7 @@ return new class extends Migration
             $table->timestamp('created_at')->nullable()->useCurrent();
             $table->timestamp('updated_at')->nullable()->useCurrent()->useCurrentOnUpdate();
             $table->foreign('psikolog_id', 'fk_jadwal_psikolog')
-            ->references('psikolog_id')->on('psikologs')
+            ->references('psikolog_id')->on('psikolog')
             ->restrictOnDelete()->cascadeOnUpdate();
         });
     }

@@ -20,6 +20,7 @@ class User extends Authenticatable
         'is_aktif',
     ];
     protected $hidden = ['password',];
+    protected $casts = ['is_aktif' => 'boolean'];
 
     function psikolog() {
         return $this->hasOne(Psikolog::class, 'user_id', 'user_id');
