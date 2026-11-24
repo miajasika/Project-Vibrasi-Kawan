@@ -26,7 +26,7 @@ class DashboardController extends Controller
         $permintaanBaru = Booking::with('klien.user', 'jadwalPraktik')
             ->join('jadwal_praktik', 'booking.jadwal_id', '=', 'jadwal_praktik.jadwal_id')
             ->where('jadwal_praktik.psikolog_id', $psikolog->psikolog_id)
-            ->where('booking.status', 'menunggu')
+            ->where('booking.status', 'menunggu_verifikasi')
             ->whereDate('jadwal_praktik.tanggal', '>=', today())
             ->orderBy('jadwal_praktik.tanggal')
             ->orderBy('jadwal_praktik.jam_mulai')
