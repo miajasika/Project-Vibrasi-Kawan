@@ -11,6 +11,11 @@ use App\Models\RekamKlinis;
 
 class Booking extends Model {
     use HasFactory;
+    public const STATUS_MENUNGGU_VERIFIKASI = 'menunggu_verifikasi';
+    public const STATUS_DITERIMA = 'diterima';
+    public const STATUS_SELESAI = 'selesai';
+    public const STATUS_DITOLAK = 'ditolak';
+
     protected $table = 'booking';
     protected $primaryKey = 'booking_id';
     protected $fillable = [
