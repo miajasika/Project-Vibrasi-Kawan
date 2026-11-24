@@ -4,28 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'Dashboard') - Vibrasi Kawan</title>
+    @stack('styles')
 </head>
-<body>
+<body style="margin: 0; font-family: sans-serif; background-color: #F7F5F5; color: #333;">
 
-    <!-- Header / Navbar -->
-    <header style="background: #f4f4f4; padding: 10px; display: flex; justify-content: space-between;">
-        <h2>Vibrasi Kawan Dashboard</h2>
-        <nav>
-            <form action="/logout" method="POST" style="display:inline;">
+
+
+    <header style="background: #ffffff; padding: 14px 32px; display: flex; justify-content: space-between; align-items: center: border-bottom: 1px solid #eee;">
+        <div style="display: flex; align-items: center; gap: 10px;">
+            <img src="{{ asset('images/logo.png') }}" alt="Logo" style="height: 32px;">
+            <strong style="color: #8B3A42; font-size: 16px;">Vibrasi Kawan</strong>
+        </div>
+        <div style="display: flex; align-items: center; gap: 16px;">
+            <span style="font-size: 14px; color: #555;">Halo, <strong>{{ Auth::user()->name ?? 'Pengguna' }}</strong></span>
+            <form method="POST" action="{{ route('logout') }}" style="margin: 0;">
                 @csrf
-                <button type="submit">Logout</button>
+                <button type="submit" style="background-color: #ffffff; border: 1px solid #8B3A42; color: #8B3A42; padding: 6px 14px; border-radius: 6px; font-size: 13px; font-weight: 600; cursor: pointer;">
+                    Logout
+                </button>
             </form>
-        </nav>
+        </div>
     </header>
 
-    <!-- Main Content -->
-    <main style="padding: 20px;">
+    <main style="padding: 32px 20px;">
         @yield('content')
     </main>
 
-    <!-- Footer -->
-    <footer style="margin-top: 50px; text-align: center; color: gray;">
-        <p>&copy; {{ date('Y') }} Vibrasi Kawan. All rights reserved.</p>
-    </footer>
+    @stack('scripts')
 </body>
 </html>
+
