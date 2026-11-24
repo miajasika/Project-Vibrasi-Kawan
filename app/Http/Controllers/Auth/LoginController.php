@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Auth;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\LoginRequest;
 use Illuminate\View\View;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\User;
 
 class LoginController extends Controller
 {
@@ -14,17 +16,9 @@ class LoginController extends Controller
         return view('auth.login');
     }
 
-    public function authenticate(Request $request)
+    public function authenticate(LoginRequest $request)
     {
-        $credentials = $request->validate([
-            'email'     => ['required', 'email'],
-            'password'  => ['required'],
-        ], [
-            'email.required'    => 'Email wajib diisi.',
-            'email.email'       => 'Format email tidak valid.',
-            'password.required' => 'Kata sandi wajib diisi.',
-        ]);
-
+        $credentials = $request->validated();
         $credentials['is_aktif'] = true;
 
         if (! Auth::attempt($credentials)){
@@ -35,8 +29,8 @@ class LoginController extends Controller
         $request->session()->regenerate();
 
         return match (Auth::user()->role) {
-            'admin'    => redirect()->intended(route('admin.dashboard')),
-            'psikolog' => redirect()->intended(route('psikolog.dashboard')),
+            User::ROLE_ADMIN    => redirect()->intended(route('admin.dashboard')),
+            User::ROLE_PSIKOLOG => redirect()->intended(route('psikolog.dashboard')),
             default    => redirect()->intended(route('klien.dashboard')),
         };
     }

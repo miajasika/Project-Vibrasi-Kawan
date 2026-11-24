@@ -4,6 +4,7 @@ use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
 use Illuminate\Http\Request;
+use App\Models\User;
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
@@ -20,8 +21,8 @@ return Application::configure(basePath: dirname(__DIR__))
 
         $middleware->redirectUsersTo(function (Request $request) {
             return match ($request->user()->role) {
-                 'admin' => route('admin.dashboard'),
-                 'psikolog' => route('psikolog.dashboard'),
+                 User::ROLE_ADMIN       => route('admin.dashboard'),
+                 User::ROLE_PSIKOLOG    => route('psikolog.dashboard'),
                  default => route('klien.dashboard'),
             };
         });
