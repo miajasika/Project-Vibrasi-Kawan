@@ -17,26 +17,28 @@ class LoginController extends Controller
     public function authenticate(Request $request)
     {
         $credentials = $request->validate([
-            'email' => ['required', 'email'],
-            'password' => ['required'],
+            'email'     => ['required', 'email'],
+            'password'  => ['required'],
+        ], [
+            'email.required'    => 'Email wajib diisi.',
+            'email.email'       => 'Format email tidak valid.',
+            'password.required' => 'Kata sandi wajib diisi.',
         ]);
 
-        if (Auth::attempt($credentials)) {
-            $request->session()->regenerate();
+        $credentials['is_aktif'] = true;
 
-            $user = Auth::user();
-
-            if ($user->role === 'admin') {
-                return redirect()->intended('/admin/dashboard');
-            } elseif ($user->role === 'psikolog') {
-                return redirect()->intended('/psikolog/dashboard');
-            }
-            return redirect()->intended('/dashboard');
+        if (! Auth::attempt($credentials)){
+            return back()
+                ->withErrors(['email' => 'Email atau kata sandi salah, atau akun tidak aktif.'])
+                ->onlyInput('email');
         }
+        $request->session()->regenerate();
 
-        return back()->withErrors([
-            'email' => 'Email atau password yang Anda masukkan salah.',
-        ])->onlyInput('email');
+        return match (Auth::user()->role) {
+            'admin'    => redirect()->intended(route('admin.dashboard')),
+            'psikolog' => redirect()->intended(route('psikolog.dashboard')),
+            default    => redirect()->intended(route('klien.dashboard')),
+        };
     }
 
     public function logout(Request $request)
