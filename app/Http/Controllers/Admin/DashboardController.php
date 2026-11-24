@@ -11,9 +11,9 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        $jumalahKlien = Klien::count();
+        $jumlahKlien = Klien::count();
         $jumlahPsikolog = Psikolog::count();
 
-        return view('admin.dashboard', compact('jumalahKlien', 'jumlahPsikolog'));
+        return view('admin.dashboard', compact('jumlahKlien', 'jumlahPsikolog'));
     }
 }
