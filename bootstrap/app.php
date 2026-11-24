@@ -12,8 +12,21 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
-        //
+        $middleware->alias([
+            'role' => \App\Http\Middleware\CheckRole::class,
+        ]);
+
+        $middleware->redirectGuestsTo(fn (Request $request) => route('login'));
+
+        $middleware->redirectUsersTo(function (Request $request) {
+            return match ($request->user()->role) {
+                 'admin' => route('admin.dashboard'),
+                 'psikolog' => route('psikolog.dashboard'),
+                 default => route('klien.dashboard'),
+            };
+        });
     })
+
     ->withExceptions(function (Exceptions $exceptions): void {
         $exceptions->shouldRenderJsonWhen(
             fn (Request $request) => $request->is('api/*') || $request->expectsJson(),

@@ -14,6 +14,6 @@ class DashboardController extends Controller
         $jumlahKlien = Klien::count();
         $jumlahPsikolog = Psikolog::count();
 
-        return view('admin.dashboard', compact('jumalahKlien', 'jumlahPsikolog'));
+        return view('admin.dashboard', compact('jumlahKlien', 'jumlahPsikolog'));
     }
 }
