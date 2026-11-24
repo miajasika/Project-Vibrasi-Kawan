@@ -14,7 +14,7 @@ class Booking extends Model {
     public const STATUS_MENUNGGU_VERIFIKASI = 'menunggu_verifikasi';
     public const STATUS_DITERIMA = 'diterima';
     public const STATUS_SELESAI = 'selesai';
-    public const STATUS_DITOLAK ='ditolak';
+    public const STATUS_DITOLAK = 'ditolak';
 
     protected $table = 'booking';
     protected $primaryKey = 'booking_id';
