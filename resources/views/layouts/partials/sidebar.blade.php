@@ -9,7 +9,7 @@
 <aside class="app-sidebar vk-sidebar" data-bs-theme="light">
     <div class="sidebar-brand">
         <a href="{{ $role === 'admin' ? route('admin.dashboard') : ($role === 'psikolog' ? route('psikolog.dashboard') : route('klien.dashboard')) }}" class="brand-link vk-brand">
-            <span class="vk-logo"><i class="bi bi-flower1"></i></span>
+            <span class="vk-logo"><img src="{{ asset('assets/VIBRASI KAWAN LOGO.png') }}" alt="Logo Vibrasi Kawan" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;"></span>
             <span class="brand-text">Vibrasi Kawan</span>
         </a>
     </div>

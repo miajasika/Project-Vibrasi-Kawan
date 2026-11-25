@@ -2,12 +2,12 @@
 @section('title', 'Daftar Akun')
 @section('content')
 <header class="vk-public-nav vk-auth-nav">
-    <a class="vk-brand" href="{{ url('/') }}"><span class="vk-logo"><i class="bi bi-flower1"></i></span><span>Vibrasi Kawan</span></a>
+    <a class="vk-brand" href="{{ url('/') }}"><span class="vk-logo"><img src="{{ asset('assets/VIBRASI KAWAN LOGO.png') }}" alt="Logo Vibrasi Kawan" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;"></span><span>Vibrasi Kawan</span></a>
     <div class="vk-nav-actions"><a class="vk-btn vk-btn-soft" href="{{ route('login') }}">Masuk</a><a class="vk-btn vk-btn-primary" href="{{ route('register') }}">Daftar</a></div>
 </header>
 <main class="vk-auth-page">
     <section class="vk-auth-card vk-register-card">
-        <div class="vk-auth-brand"><span class="vk-logo vk-logo-large"><i class="bi bi-flower1"></i></span><h1>Vibrasi Kawan</h1><p>Buat akun baru sebagai klien</p></div>
+        <div class="vk-auth-brand"><span class="vk-logo vk-logo-large"><img src="{{ asset('assets/VIBRASI KAWAN LOGO.png') }}" alt="Logo Vibrasi Kawan" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;"></span><h1>Vibrasi Kawan</h1><p>Buat akun baru sebagai klien</p></div>
         @if ($errors->any())<div class="vk-form-alert">Periksa kembali data yang kamu masukkan.</div>@endif
         <form action="{{ route('register.store') }}" method="POST">
             @csrf
