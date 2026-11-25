@@ -14,7 +14,7 @@ class DashboardController extends Controller
 
         $sesiMendatang = Booking::with('jadwalPraktik.psikolog.user')
             ->where('klien_id', $klien->klien_id)
-            ->where('status', 'diterima')
+            ->where('status', Booking::STATUS_DITERIMA)
             ->whereHas('jadwalPraktik', function ($query) {
                 $query->where('tanggal', '>=', today());
             })
@@ -24,7 +24,7 @@ class DashboardController extends Controller
 
         $riwayatSingkat = Booking::with('jadwalPraktik.psikolog.user')
             ->where('klien_id', $klien->klien_id)
-            ->where('status', 'selesai')
+            ->where('status', Booking::STATUS_SELESAI)
             ->whereHas('jadwalPraktik', function ($query) {
                 $query->where('tanggal', '<', today());
             })
