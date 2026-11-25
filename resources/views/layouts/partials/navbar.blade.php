@@ -10,6 +10,12 @@
                 <span class="vk-avatar vk-avatar-small"><i class="bi bi-person"></i></span>
                 <span><strong>{{ auth()->user()->name ?? 'Pengguna' }}</strong><small>{{ ucfirst(auth()->user()->role ?? 'Akun') }}</small></span>
             </div>
+            <form method="POST" action="{{ route('logout') }}" class="m-0">
+                @csrf
+                <button class="vk-icon-button" type="submit" aria-label="Logout" title="Logout">
+                    <i class="bi bi-box-arrow-right"></i>
+                </button>
+            </form>
         </div>
     </div>
 </nav>
