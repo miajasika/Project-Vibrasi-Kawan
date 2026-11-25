@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 @extends('layouts.guest')
 @section('title', 'Masuk')
 @section('content')
@@ -19,4 +20,43 @@
         <a class="vk-back-home" href="{{ url('/') }}"><i class="bi bi-arrow-left"></i> Kembali ke beranda</a>
     </section>
 </main>
+=======
+@extends('layouts.auth')
+
+@section('title', 'Masuk')
+
+@section('content')
+<h2 style="margin: 0 0 6px 0; font-size: 20px; text-align: center; color: #222;">Masuk ke Akun</h2>
+<p style="margin: 0 0 24px 0; font-size: 13px; text-align center; #666;">Silahkan masukkan email dan kata sandi Anda</p>
+
+<form method="POST" action="{{ route('Login.attempt') }}">
+    @csrf
+
+<div style="margin-bottom: 16px;">
+    <label for="email" style="display: block; font-size: 13px; font-weight: 600; margin-bottom: 6px;">Email</label>
+        <input type="email" id="email" name="email" value="{{ old('email') }}" required autofocus
+               style="width: 100%; box-sizing: border-box; padding: 10px 12px; border: 1px solid #ccc; border-radius: 8px; font-size: 14px;">
+        @error('email')
+            <small style="color: #dc3545; display: block; margin-top: 4px;">{{ $message }}</small>
+        @enderror
+    </div>
+
+    <div style="margin-bottom: 20px;">
+        <label for="password" style="display: block; font-size: 13px; font-weight: 600; margin-bottom: 6px;">Password</label>
+        <input type="password" id="password" name="password" required
+               style="width: 100%; box-sizing: border-box; padding: 10px 12px; border: 1px solid #ccc; border-radius: 8px; font-size: 14px;">
+        @error('password')
+            <small style="color: #dc3545; display: block; margin-top: 4px;">{{ $message }}</small>
+        @enderror
+    </div>
+
+    <button type="submit" style="width: 100%; background-color: #8B3A42; color: #ffffff; padding: 12px; border: none; border-radius: 8px; font-size: 15px; font-weight: 600; cursor: pointer;">
+        Masuk
+    </button>
+</form>
+
+<p style="margin: 20px 0 0 0; text-align: center; font-size: 13px; color: #666;">
+    Belum punya akun klien? <a href="{{ route('register') }}" style="color: #8B3A42; font-weight: 600; text-decoration: none;">Daftar di sini</a>
+</p>
+>>>>>>> c3c08e1a2f70ec7a3e6a3d18778a94f1e23c2266
 @endsection
